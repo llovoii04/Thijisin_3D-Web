@@ -433,6 +433,13 @@ model-viewer {
     justify-content: center;
 }
 
+.h-card-img-area model-viewer {
+    width: 100%;
+    height: 100%;
+    display: block;
+    align-self: stretch;
+}
+
 .h-card-info { padding: 15px; border-top: 1px solid #EEE; }
 .h-card-title { font-size: 1.2rem; margin-bottom: 15px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
 
