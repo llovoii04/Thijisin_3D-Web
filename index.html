@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>십이지신 문화유산 탐험</title>
+    <meta name="description" content="십이지신 동물들을 네비게이션으로 삼아 전국의 문화유산을 쉽고 재미있게 탐색하는 3D 가상전시입니다.">
+    <!-- 구글 폰트 적용 -->
+    
+    <link rel="stylesheet" href="./style.css?v=70">
+    <!-- Google Model Viewer -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+    <!-- StPageFlip (Vanilla JS) -->
+    <script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.min.js"></script>
+</head>
+<body>
+    <!-- 배경 이미지 영역 -->
+    <div class="global-bg" style="background-image: url('images/home_bg.jpg');"></div>
+
+    <!-- 상단 네비게이션 -->
+    <header id="global-header">
+        <div class="header-inner">
+            <div class="logo-area" id="nav-home" tabindex="0" role="button">
+                <div class="logo-icon-placeholder" style="background-image: url('images/logo_tiger.png');">🐯</div>
+                <div class="logo-text">
+                    <h1>십이지신 문화유산 탐험</h1>
+                    <p>동물에 담긴 전통수호 이야기 상상</p>
+                </div>
+            </div>
+            <nav class="nav-menu">
+                <button class="btn-nav active" id="nav-list">🐾 문화유산 탐색</button>
+                <button class="btn-nav" id="nav-storybook">📖 스토리 아카이브</button>
+                <button class="btn-nav">ℹ️ 이용 안내</button>
+                <button class="btn-nav">⭐ 마이컬렉션</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 메인 컨테이너 -->
+    <main id="app-container">
+        
+        <!-- ==========================================
+             1. 메인 페이지 (Home)
+             ========================================== -->
+        <section id="view-home" class="view-section active">
+            <!-- 중앙 타이틀 영역 -->
+            <div class="home-title-area">
+                <h2>시공간을 넘는 전통 수호신</h2>
+                <h3>십이지신 동물 테마 가상전시</h3>
+                <p>십이지신 동물들을 네비게이션으로 삼아<br>전국의 문화유산을 쉽고 재미있게 탐색해 보세요!</p>
+            </div>
+
+            <!-- 12가지 동물 카드 영역 -->
+            <div class="home-cards-section">
+                <div class="section-header">
+                    <h4>🐾 12가지 동물로 떠나는 문화유산 여행</h4>
+                    <p>궁금한 동물 카드를 선택해 보세요!</p>
+                </div>
+                <div class="tarot-cards-container" id="home-tarot-cards">
+                    <!-- JS에서 12개 카드 렌더링 -->
+                </div>
+            </div>
+
+            <!-- 하단 2단 배너 영역 -->
+            <div class="home-bottom-banners">
+                <div class="banner-box left-box" style="background-color: #FDF9F1; border: 1px solid #EAE0C8; align-items: center; display: flex; flex-direction: row;">
+                    <div class="box-content" style="flex: 1; padding-right: 20px;">
+                        <h4 style="font-size: 1.6rem; color: #4A3320; margin-bottom: 5px;">스토리로 배우는</h4>
+                        <h3 style="font-size: 2.2rem; color: #4A6E46; margin-bottom: 15px;">십이지신의 의미</h3>
+                        <p style="color: #4A3320; line-height: 1.5; margin-bottom: 20px; font-size: 1.1rem;">동물에 얽힌 전설과 상징, 조상들의 지혜를<br>스토리로 만나보세요.</p>
+                        <button class="btn-round-green" id="btn-go-storybook" style="padding: 12px 24px; font-size: 1.2rem; border-radius: 30px; background-color: #557A4B;">스토리북 아카이브 가기 &gt;</button>
+                    </div>
+                    <div class="box-img" style="background-image: url('images/book_07.png'); width: 280px; height: 200px; background-size: contain; background-repeat: no-repeat; background-position: right center;"></div>
+                </div>
+                <div class="banner-box right-box">
+                    <div class="box-header">
+                        <h4>📣 공지사항</h4>
+                    </div>
+                    <ul class="notice-list">
+                        <li id="home-notice-1" style="cursor:pointer;">
+                            <span class="notice-title">🔊 &lt;십이지신 3D가상전시 정식 오픈&gt;</span>
+                            <span class="notice-date">26.07.16</span>
+                        </li>
+                        <li id="home-notice-2" style="cursor:pointer;">
+                            <span class="notice-title">🔊 2026년 십이지신 문화유산 탐험 앱 업데이트 안내</span>
+                            <span class="notice-date">26.07.16</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             2. 목록 페이지 (List)
+             ========================================== -->
+        <section id="view-list" class="view-section">
+            <!-- 상단 커버플로우(Coverflow) 카드 캐러셀 -->
+            <div class="coverflow-container">
+                <div class="coverflow-track" id="coverflow-track">
+                    <!-- JS에서 카드 렌더링 -->
+                </div>
+                
+            </div>
+
+            <!-- 하단 유물 목록 영역 -->
+            <div class="heritage-list-section">
+                <div class="list-controls">
+                    <div class="total-count">총 <span id="list-total-count">0</span>건</div>
+                    <div class="filters">
+                        <button class="btn-sort">정확도 정렬</button>
+                        <button class="btn-sort">최신 정렬</button>
+                        <button class="btn-sort active">검색 정렬</button>
+                        <div class="search-bar">
+                            <input type="text" placeholder="검색창">
+                            <button>🔍</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="heritage-grid" id="heritage-grid">
+                    <!-- JS에서 유물 카드 렌더링 -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             3. 상세 페이지 (Detail - 와이드 레이아웃)
+             ========================================== -->
+        <section id="view-detail" class="view-section detail-page">
+            <div class="detail-container">
+                <!-- 상단 헤더 -->
+                <div class="detail-top-header">
+                    <div class="detail-logo-area">
+                        <div class="logo-icon-placeholder" style="background-image: url('images/logo_tiger.png');"></div>
+                        <div class="detail-header-text">
+                            <h2><span id="detail-title-main">유물명</span> <span class="tag-badge" id="detail-tag-badge">분류</span> <span id="detail-symbol-main" style="color: #C1A073; font-size: 1.2rem; margin-left: 15px; font-weight: normal; letter-spacing: 1px;"></span></h2>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 메인 콘텐츠 영역 (2단) -->
+                <div class="detail-main-content">
+                    <!-- 좌측: 뷰어 -->
+                    <div class="detail-viewer-area">
+                        <div class="viewer-wrapper" id="detail-hero-area">
+                            <!-- model-viewer or img injected here -->
+                        </div>
+                    </div>
+
+                    <!-- 우측: 정보 -->
+                    <div class="detail-info-area">
+                        <div class="info-header">
+                            <h2 class="info-title"><span id="detail-title-side">유물명</span> <span class="tag-badge" id="detail-tag-side">국보</span></h2>
+                        </div>
+
+                        <!-- 탭 메뉴 -->
+                        <div class="info-tabs">
+                            <button class="active" style="cursor:default;">📝 유물 정보</button>
+                        </div>
+
+                        <!-- 탭 내용 -->
+                        <div class="info-tab-content">
+                            <table class="info-table">
+                                <tbody>
+                                    <tr>
+                                        <th>소장처</th>
+                                        <td id="detail-spec-location">국립경주박물관</td>
+                                    </tr>
+                                    <tr>
+                                        <th>크기</th>
+                                        <td id="detail-spec-size">상세 정보 참조</td>
+                                    </tr>
+                                    <tr>
+                                        <th>시대</th>
+                                        <td id="detail-spec-year">통일신라</td>
+                                    </tr>
+                                    <tr>
+                                        <th>출처</th>
+                                        <td id="detail-spec-source">디지털 헤리티지 가상전시</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="info-desc-box">
+                                <h4 style="margin-bottom: 10px; border-bottom: 1px solid #ccc; padding-bottom: 5px;">유물 상세 정보</h4>
+                                <ul id="detail-desc-list">
+                                    <li>상세 정보가 여기에 표시됩니다.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 하단 네비게이션 바 -->
+                <div class="detail-bottom-nav">
+                    <button class="btn-bottom-nav" id="btn-nav-prev">◀ 이전 유물 보기</button>
+                    <button class="btn-solid-dark" id="btn-bottom-list">목록으로 돌아가기</button>
+                    <button class="btn-bottom-nav" id="btn-nav-next">다음 유물 보기 ▶</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             4. 스토리북 아카이브 목록 (Storybook List)
+             ========================================== -->
+        <section id="view-storybook-list" class="view-section detail-page">
+            <div class="detail-container">
+                <div class="detail-top-header">
+                    <div class="detail-logo-area">
+                        <div class="detail-header-text">
+                            <h2>📖 스토리북 아카이브</h2>
+                            <p>12지신이 들려주는 비밀 이야기</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="storybook-grid" id="storybook-grid">
+                    <!-- 스토리북 카드들이 JS로 주입됩니다 -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             5. 스토리북 상세 페이지 (Storybook Detail)
+             ========================================== -->
+        <section id="view-storybook-detail" class="view-section detail-page">
+            <div class="detail-container book-container">
+                <div class="book-layout">
+                    <!-- 좌측: 일러스트 -->
+                    <div class="book-left">
+                        <img id="sb-detail-img" src="" alt="일러스트" class="book-img">
+                    </div>
+                    <!-- 우측: 텍스트 -->
+                    <div class="book-right">
+                        <div class="book-content">
+                            <h2 class="book-title" id="sb-detail-title">스토리 제목</h2>
+                            <h4 class="book-tagline" id="sb-detail-tagline">태그라인</h4>
+                            <div class="book-divider"></div>
+                            <p class="book-story" id="sb-detail-story">스토리 텍스트...</p>
+                            <p class="book-source" id="sb-detail-source">출처</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="detail-bottom-nav" style="margin-top: 20px;">
+                    <button class="btn-bottom-nav" id="btn-sb-prev">◀ 이전 이야기</button>
+                    <button class="btn-solid-dark" id="btn-sb-list">아카이브 목록</button>
+                    <button class="btn-bottom-nav" id="btn-sb-next">다음 이야기 ▶</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             4. 스토리북 아카이브 (3D Flipbook)
+             ========================================== -->
+        <section id="view-storybook-flip" class="view-section">
+            <div class="flipbook-container">
+                <button id="btn-flip-close" class="btn-solid-dark" style="position: absolute; top: 20px; right: 20px; z-index: 10;">메인으로 닫기</button>
+                <div class="flipbook-viewport">
+                    <div class="flipbook" id="flipbook">
+                        <!-- 페이지들이 JS로 주입됩니다 -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             5. 공지사항 상세 모달/페이지
+             ========================================== -->
+        <section id="view-notice" class="view-section">
+            <div class="notice-detail-container">
+                <div class="notice-detail-board">
+                    <div class="notice-detail-header" style="text-align: center; margin-bottom: 10px;">
+                        <h2 style="font-size: 2rem; color: #222; margin-bottom: 10px;">&lt;십이지신 3D가상전시 정식 오픈&gt;</h2>
+                        <div class="notice-meta" style="color: #666; font-size: 1.1rem;">
+                            <span>작성자: 12지신 보디가드 협회장 (쥐 장군)</span> | 
+                            <span>작성일: 2026.07.16</span> | 
+                            <span>조회수: 1024</span>
+                        </div>
+                    </div>
+                    <div style="border-bottom: 2px solid #5D4037; margin-bottom: 20px;"></div>
+                    
+                    <div class="notice-hero-banner">
+                    </div>
+                    
+                    <div class="notice-body">
+                        <p>안녕하십니까, 대한민국 백성 여러분!</p>
+                        <p>그동안 국립박물관 유리창 뒤에, 혹은 딱딱한 2D 교과서 사진 속에 갇혀서 몸이 찌뿌둥했던 십이지신 장군들입니다.</p>
+                        <p>우리가 매일 똑같은 포즈로 서 있느라 허리가 좀 아팠는데, 드디어 용한 인간(?)들이 나타나 저희를 3D 세계로 꺼내주었습니다! (만세!)</p>
+                        <p>이제 마우스만 요리조리 돌리면 저희의 앞모습, 뒷모습, 숨겨진 칼날까지 360도로 탈탈털어 구경하실 수 있습니다.</p>
+                        
+                        <div class="notice-rules" style="margin-top: 30px;">
+                            <h4 style="font-size: 1.3rem; color: #8B5A2B; margin-bottom: 10px;">📌 장군들이 전하는 이용 수칙 :</h4>
+                            <ol style="line-height: 1.8; margin-left: 20px;">
+                                <li>화면 속 호랑이 장군을 너무 세게 돌리지 마세요. (멀미합니다 어흥-)</li>
+                                <li>뱀 장군 카드를 열 때는 눈을 크게 뜨세요! (개구리를 물고 있는 귀여운 모습을 숨은그림찾기 하듯 찾아야 하니까요.)</li>
+                                <li>스토리가 너무 재밌어서 밤새우면 안 됩니다. (밤에는 개 장군이 지켜주니까 어린이 여러분은 일찍 자야 해요!)</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="notice-footer-text" style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 40px; position: relative;">
+                            <div>
+                                <p style="font-size: 1.3rem; font-weight: bold; margin-bottom: 20px;">자, 그럼 지금 바로 타로 카드를 뒤집고 저희를 만나러 오십시오.</p>
+                                <button class="btn-solid-dark" id="btn-go-exhibition-from-notice" style="background-color: #4A6E46; font-size: 1.2rem; padding: 10px 30px;">3D 가상전시관 바로가기</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 40px;">
+                        <button class="btn-bottom-nav" id="btn-close-notice">돌아가기</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script type="module" src="./main.js?v=70"></script>
+</body>
+</html>
