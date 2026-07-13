@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let mediaHtml = '';
             if (item.modelPath) {
                 // 목록에서는 회전이나 조작을 못하도록 옵션 제거 및 pointer-events 제어
-                mediaHtml = `<model-viewer src="${item.modelPath}" style="width:100%; height:100%; min-height:350px; pointer-events:none;"></model-viewer>`;
+                mediaHtml = `<model-viewer src="${item.modelPath}" style="width:100%; height:100%; pointer-events:none;"></model-viewer>`;
             } else if (item.imagePath) {
                 mediaHtml = `<img src="${item.imagePath}" style="width:100%; height:100%; object-fit:contain;">`;
             } else {
