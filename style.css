@@ -300,10 +300,24 @@ model-viewer {
 .notice-list li {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 8px 0;
     border-bottom: 1px dashed #CCC;
     font-size: 1.1rem;
     cursor: pointer;
+}
+
+.notice-title {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 15px;
+}
+
+.notice-date {
+    flex-shrink: 0;
+    color: #666;
 }
 
 /* ===== 紐⑸줉 ?붾㈃ (List) ===== */
