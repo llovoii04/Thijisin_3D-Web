@@ -320,6 +320,10 @@ model-viewer {
     color: #666;
 }
 
+.banner-desc {
+    word-break: keep-all;
+}
+
 /* ===== 紐⑸줉 ?붾㈃ (List) ===== */
 .coverflow-container {
     height: 480px;
@@ -652,8 +656,9 @@ model-viewer {
     .home-title-area h3 { font-size: 2.2rem; }
     .home-title-area p { font-size: 1rem; }
     .home-bottom-banners { flex-direction: column; }
-    .banner-box.left-box { display: flex !important; flex-direction: column !important; text-align: left !important; align-items: flex-start !important; gap: 20px; padding: 30px !important; }
+    .banner-box.left-box { display: flex !important; flex-direction: column !important; text-align: left !important; align-items: flex-start !important; gap: 20px; padding: 20px !important; }
     .banner-box.left-box .box-content { padding-right: 0 !important; margin-bottom: 0; }
+    .banner-desc { font-size: 0.95rem !important; line-height: 1.6 !important; }
     .banner-box.left-box .box-img { width: 100% !important; max-width: 320px; height: 250px !important; margin: 0 auto; background-position: center !important; }
     .header-inner { flex-direction: column; gap: 10px; }
     
